@@ -1,0 +1,41 @@
+HASHiNG;
+
+Hash fonksiyonu arama iþlemini bir çýrpýda yapmak ve aranana doðrudan ulaþmak için kullanýlan bir fonksiyondur.
+Hashing, elimizdeki veriyi kullanarak o veriden elden geldiði kadar benzersiz bir tamsayý elde etme iþlemidir. 
+Bu elde edilen tamsayý, dizi þeklinde tutulan verilerin indisi gibi kullanýlarak verilere tek seferde eriþmemizi saðlar. 
+Veriler üzerinde arama yapmak için en hýzlý yöntem hash fonksiyonudur denilebilir.
+Ýdealde arama iþlemi bir çýrpýda yapýldýðý için karmaþýklýk O(1)’dir. 
+Hash tablosunda çakýþmalar meydana gelir ve bu çakýþmalarý önlemek adýna 3 farklý çözüm yolu bulunur.
+
+Linear Probing (Doðrusal Doldurma)
+
+Ayný pozisyona gelen ikinci kayýt ilgili pozisyondan sonraki ilk boþ pozisyona yerleþtirilir. 
+Ekleme: Boþ bir alan bulunarak yapýlýr. 
+Silme/Eriþim: Girilen veriyi bulana kadar devam eder.
+Kayýtlarýn yýðýn þeklinde toplanmasýna sebep olur. 
+Silme ve arama iþlemleri için gereken zaman ayný hash deðeri sayýsý arttýkça artar. 
+
+Quadratic Probing (Kuadratik Doldurma) 
+
+Ayný pozisyona gelen ikinci kayýt Quadratic fonksiyonla yerleþtirilir. 
+En çok kullanýlan fonksiyon 
+t = h(t) 
+f(x) = t + x² 
+Yeni pozisyon için sýrasýyla (t+1²), (t+2²), ..., (t+n²) deðerlerine karþýlýk gelen pozisyonlara bakýlýr ve ilk boþ olana yerleþtirilir. 
+Anahtar deðerlerini linear probing metoduna göre daha düzgün daðýtýr.
+Yeni eleman eklemede tablo boyutuna dikkat edilmezse sonsuza kadar çalýþma riski vardýr.
+
+Double Hashing (Çift Kýrpma) 
+
+Ayný pozisyona gelen ikinci kayýt için ikinci bir hash fonksiyonu kullanýlýr. 
+Ýkinci hash fonksiyonu 0 deðerini alamaz. 
+En çok kullanýlan fonksiyon: 
+hash(x) = hash1(x) + i * hash2(x) 
+Örn.: hash2(x)= R - ( x % R ), R < Tablo Boyutu 
+hash(x) = hash1(x) 
+hash(x) = hash1(x) + 1 * hash2(x) 
+hash(x) = hash1(x) + 2 * hash2(x) 
+hash(x) = hash1(x) + 3 * hash2(x) 
+
+Anahtar deðerlerini linear probing metoduna göre daha düzgün daðýtýr ve gruplar oluþmaz. 
+Quadratic probing metoduna göre daha yavaþtýr çünkü ikinci bir hash fonksiyonu hesaplanýr. 
